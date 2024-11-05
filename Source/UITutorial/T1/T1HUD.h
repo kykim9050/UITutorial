@@ -6,6 +6,7 @@
 #include "GameFramework/HUD.h"
 #include "T1HUD.generated.h"
 
+class UT1MainWidget;
 /**
  * 
  */
@@ -13,5 +14,15 @@ UCLASS()
 class UITUTORIAL_API AT1HUD : public AHUD
 {
 	GENERATED_BODY()
-	
+
+public:
+
+protected:
+	void BeginPlay() override;
+
+private:
+	UT1MainWidget* MainWidget = nullptr;
+
+	UPROPERTY(Editanywhere, Category = "Widgets", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<UUserWidget> MainWidgetClass = nullptr;
 };
