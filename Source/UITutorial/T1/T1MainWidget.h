@@ -9,9 +9,21 @@
 /**
  * 
  */
-UCLASS()
+class UWTextDataMain;
+class UCanvasPanel;
+UCLASS(Blueprintable, BlueprintType)
 class UITUTORIAL_API UT1MainWidget : public UUserWidget
 {
 	GENERATED_BODY()
-	
+public:
+
+protected:
+	const FText GetPaletteCategory() override;
+
+private:
+	UPROPERTY(BlueprintReadOnly, Category = "T1Widget", meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
+	UCanvasPanel* RootWidget = nullptr;
+
+	UPROPERTY(BlueprintReadOnly, Category = "T1Widget", meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
+	UWTextDataMain* TextDataMain = nullptr;
 };
