@@ -6,6 +6,20 @@
 #include "Components/Widget.h"
 #include "WTextDataMain.generated.h"
 
+class STextDataMain : public SCompoundWidget
+{
+public:
+	SLATE_BEGIN_ARGS(STextDataMain) {}
+	SLATE_END_ARGS()
+
+	void Construct(const FArguments& InArgs);
+
+protected:
+
+private:
+
+};
+
 /**
  * 
  */
@@ -21,5 +35,5 @@ protected:
 	TSharedRef<SWidget> RebuildWidget() override;
 
 private:
-	
+	TSharedPtr<STextDataMain> TextDataMainWidget = nullptr;
 };

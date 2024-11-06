@@ -3,9 +3,18 @@
 
 #include "T1/WTextDataMain.h"
 
+void STextDataMain::Construct(const FArguments& InArgs)
+{
+	ChildSlot
+	[
+		SNew(STextBlock)
+		.Text(FText::FromString("Test Text"))
+	];
+}
+
 void UWTextDataMain::ReleaseSlateResources(bool bReleaseChildren)
 {
-
+	TextDataMainWidget.Reset();
 }
 
 const FText UWTextDataMain::GetPaletteCategory()
@@ -15,5 +24,6 @@ const FText UWTextDataMain::GetPaletteCategory()
 
 TSharedRef<SWidget> UWTextDataMain::RebuildWidget()
 {
-	return SNew(SSpacer);
+	TextDataMainWidget = SNew(STextDataMain);
+	return TextDataMainWidget.ToSharedRef();
 }
