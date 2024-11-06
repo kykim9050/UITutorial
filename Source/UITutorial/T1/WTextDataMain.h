@@ -6,6 +6,8 @@
 #include "Components/Widget.h"
 #include "WTextDataMain.generated.h"
 
+class STextDataWidget;
+
 class STextDataMain : public SCompoundWidget
 {
 public:
@@ -17,7 +19,7 @@ public:
 protected:
 
 private:
-
+	TArray<TSharedPtr<STextDataWidget>> TextDataWidgets = TArray<TSharedPtr<STextDataWidget>>();
 };
 
 /**

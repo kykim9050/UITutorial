@@ -2,6 +2,7 @@
 
 
 #include "T1/WTextDataMain.h"
+#include "T1/TextDataWidget.h"
 
 void STextDataMain::Construct(const FArguments& InArgs)
 {
@@ -13,6 +14,21 @@ void STextDataMain::Construct(const FArguments& InArgs)
 	[
 		SAssignNew(GridPanel, SGridPanel)
 	];
+
+	for (int X = 0; X < 3; ++X)
+	{
+		for (int Y = 0; Y < 3; ++Y)
+		{
+			TSharedPtr<STextDataWidget> NewWidget = nullptr;
+			GridPanel->AddSlot(Y, X)
+			.Padding(10.f)
+			[
+				SAssignNew(NewWidget, STextDataWidget)
+			];
+			
+			TextDataWidgets.Add(NewWidget);
+		}
+	}
 }
 
 void UWTextDataMain::ReleaseSlateResources(bool bReleaseChildren)

@@ -10,12 +10,12 @@ class UITUTORIAL_API STextDataWidget : public SCompoundWidget
 {
 public:
 	SLATE_BEGIN_ARGS(STextDataWidget) {}
-	SLATE_ARGUMENT(FTextDataInfo*, Info)
+	SLATE_ARGUMENT(TWeakObjectPtr<FTextDataInfo>, Info)
 	SLATE_END_ARGS()
 
 	void Construct(const FArguments& InArgs);
 protected:
 
 private:
-	FTextDataInfo* Info = nullptr;
+	TWeakObjectPtr<FTextDataInfo> Info = nullptr;
 };
