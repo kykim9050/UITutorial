@@ -5,10 +5,13 @@
 
 void STextDataMain::Construct(const FArguments& InArgs)
 {
+	TSharedPtr<SGridPanel> GridPanel = nullptr;;
+
 	ChildSlot
+	.HAlign(HAlign_Fill)
+	.VAlign(VAlign_Fill)
 	[
-		SNew(STextBlock)
-		.Text(FText::FromString("Test Text"))
+		SAssignNew(GridPanel, SGridPanel)
 	];
 }
 
