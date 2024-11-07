@@ -13,13 +13,13 @@
  {
  	GENERATED_BODY()
  public:
- 	UPROPERTY()
+ 	UPROPERTY(EditAnywhere)
  	FString DataTitle = "Default";
  	
- 	UPROPERTY()
- 	FString DataUnit = "None";
+ 	UPROPERTY(EditAnywhere)
+ 	FString DataUnit = "";
  
- 	UPROPERTY()
+ 	UPROPERTY(EditAnywhere)
  	FString DataValue = "...";
  
  public:
