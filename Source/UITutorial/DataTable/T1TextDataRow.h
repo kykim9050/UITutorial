@@ -16,7 +16,9 @@ struct UITUTORIAL_API FT1TextDataRow : public FTableRowBase
 	GENERATED_BODY()
 
 public:
+	/// <summary>
+	/// FTextDataInfo 구조체 배열 자료구조
+	/// </summary>
 	UPROPERTY(EditAnywhere)
-	// TextData관련 구조체
-	FTextDataInfo Info = FTextDataInfo();
+	TArray<FTextDataInfo> Infos = TArray<FTextDataInfo>();
 };
