@@ -12,9 +12,12 @@ class STextDataMain : public SCompoundWidget
 {
 public:
 	SLATE_BEGIN_ARGS(STextDataMain) {}
+	SLATE_ARGUMENT(TWeakObjectPtr<UWorld>, World)
 	SLATE_END_ARGS()
 
 	void Construct(const FArguments& InArgs);
+
+	TWeakObjectPtr<UWorld> World = nullptr;
 
 protected:
 

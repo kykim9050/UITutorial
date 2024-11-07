@@ -3,9 +3,27 @@
 
 #include "T1/WTextDataMain.h"
 #include "T1/TextDataWidget.h"
+#include "Global/GlobalFunction.h"
+#include "Global/MainGameInstance.h"
+#include "DataTable/T1TextDataRow.h"
 
 void STextDataMain::Construct(const FArguments& InArgs)
 {
+	World = InArgs._World;
+	
+	if (false == World.IsValid())
+	{
+		UE_LOG(LogTemp, Fatal, TEXT("%S(%u)> if (false == World.IsValid())"), __FUNCTION__, __LINE__);
+		return;
+	}
+
+	const UWorld* CastWorld = Cast<const UWorld>(World);
+	if (nullptr == CastWorld)
+	{
+		UE_LOG(LogTemp, Fatal, TEXT("%S(%u)> if (nullptr == CastWorld)"), __FUNCTION__, __LINE__);
+		return;
+	}
+
 	TSharedPtr<SGridPanel> GridPanel = nullptr;;
 
 	ChildSlot
@@ -14,6 +32,14 @@ void STextDataMain::Construct(const FArguments& InArgs)
 	[
 		SAssignNew(GridPanel, SGridPanel)
 	];
+
+	const FT1TextDataRow* TextDatas = UGlobalFunction::GetMainGameInstance(CastWorld)->GetT1TextDataRow(FName(TEXT("T1TextDatas")));
+
+	if (nullptr == TextDatas)
+	{
+		UE_LOG(LogTemp, Fatal, TEXT("%S(%u)> if (nullptr == TextDatas)"), __FUNCTION__, __LINE__);
+		return;
+	}
 
 	for (int X = 0; X < 3; ++X)
 	{
@@ -43,6 +69,13 @@ const FText UWTextDataMain::GetPaletteCategory()
 
 TSharedRef<SWidget> UWTextDataMain::RebuildWidget()
 {
-	TextDataMainWidget = SNew(STextDataMain);
+	UWorld* CurWorld = GetWorld();
+
+	if (nullptr == CurWorld)
+	{
+		UE_LOG(LogTemp, Fatal, TEXT("%S(%u)> if (nullptr == CurWorld)"), __FUNCTION__, __LINE__);
+	}
+
+	TextDataMainWidget = SNew(STextDataMain).World(CurWorld);
 	return TextDataMainWidget.ToSharedRef();
 }
