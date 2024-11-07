@@ -4,7 +4,7 @@
 #include "Global/MainGameInstance.h"
 #include "DataTable/T1TextDataRow.h"
 
-const FT1TextDataRow* UMainGameInstance::GetT1TextDataRow(FName _Name)
+FT1TextDataRow* UMainGameInstance::GetT1TextDataRow(FName _Name)
 {
 	if (nullptr == T1TextDataRow)
 	{

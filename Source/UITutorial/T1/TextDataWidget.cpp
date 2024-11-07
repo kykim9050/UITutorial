@@ -14,17 +14,17 @@ void STextDataWidget::Construct(const FArguments& InArgs)
 		+SVerticalBox::Slot()
 		[
 			SNew(STextBlock)
-			.Text(FText::FromString(Info.IsValid() ? Info->DataTitle : "None"))
+			.Text(FText::FromString(nullptr != Info ? Info->DataTitle : "None"))
 		]
 		+SVerticalBox::Slot()
 		[
 			SNew(STextBlock)
-			.Text(FText::FromString(Info.IsValid() ? Info->DataUnit : "None"))
+			.Text(FText::FromString(nullptr != Info ? Info->DataUnit : "None"))
 		]
 		+SVerticalBox::Slot()
 		[
 			SNew(STextBlock)
-			.Text(FText::FromString(Info.IsValid() ? Info->DataValue : "None"))
+			.Text(FText::FromString(nullptr != Info ? Info->DataValue : "None"))
 		]
 	];
 }

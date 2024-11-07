@@ -20,7 +20,7 @@ public:
 	/// </summary>
 	/// <param name="_Name"></param>
 	/// <returns></returns>
-	const FT1TextDataRow* GetT1TextDataRow(FName _Name);
+	FT1TextDataRow* GetT1TextDataRow(FName _Name);
 
 protected:
 

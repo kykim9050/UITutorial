@@ -33,7 +33,7 @@ void STextDataMain::Construct(const FArguments& InArgs)
 		SAssignNew(GridPanel, SGridPanel)
 	];
 
-	const FT1TextDataRow* TextDatas = UGlobalFunction::GetMainGameInstance(CastWorld)->GetT1TextDataRow(FName(TEXT("T1TextDatas")));
+	FT1TextDataRow* TextDatas = UGlobalFunction::GetMainGameInstance(CastWorld)->GetT1TextDataRow(FName(TEXT("T1TextDatas")));
 
 	if (nullptr == TextDatas)
 	{
@@ -41,17 +41,35 @@ void STextDataMain::Construct(const FArguments& InArgs)
 		return;
 	}
 
+	int32 DatasSize = TextDatas->Infos.Num();
+	int32 Count = 0;
+
 	for (int X = 0; X < 3; ++X)
 	{
 		for (int Y = 0; Y < 3; ++Y)
 		{
 			TSharedPtr<STextDataWidget> NewWidget = nullptr;
-			GridPanel->AddSlot(Y, X)
-			.Padding(10.f)
-			[
-				SAssignNew(NewWidget, STextDataWidget)
-			];
-			
+
+			if (DatasSize > Count)
+			{
+				GridPanel->AddSlot(Y, X)
+				.Padding(10.f)
+				[
+					SAssignNew(NewWidget, STextDataWidget)
+					.Info(&(TextDatas->Infos[Count]))
+				];
+				++Count;
+			}
+			else
+			{
+				GridPanel->AddSlot(Y, X)
+				.Padding(10.f)
+				[
+					SAssignNew(NewWidget, STextDataWidget)
+					.Info(nullptr)
+				];
+			}
+
 			TextDataWidgets.Add(NewWidget);
 		}
 	}
