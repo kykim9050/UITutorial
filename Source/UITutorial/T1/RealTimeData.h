@@ -8,27 +8,25 @@
 /**
  * 
  */
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FRealTimeData
 {
 	GENERATED_BODY()
 	
 public:
 	// x,y,z좌표값 데이터
-	UPROPERTY()
-	double x;
-
-	UPROPERTY()
-	double y;
-
-	UPROPERTY()
-	double z;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere)
+	FVector Pos;
 
 public:
 	FRealTimeData()
-		:x(1.)
-		,y(1.)
-		,z(1.)
+		:Pos(FVector())
+	{
+
+	}
+
+	FRealTimeData(FVector _Pos)
+		:Pos(_Pos)
 	{
 
 	}

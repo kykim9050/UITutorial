@@ -7,3 +7,8 @@ void ARealTimeDataManager::BeginPlay()
 {
 	Super::BeginPlay();
 }
+
+void ARealTimeDataManager::SetPos(const FVector& _Pos)
+{
+	Pos = _Pos;
+}

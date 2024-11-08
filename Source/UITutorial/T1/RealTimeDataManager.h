@@ -15,26 +15,34 @@ class UITUTORIAL_API ARealTimeDataManager : public AActor
 {
 	GENERATED_BODY()
 public:
-	ARealTimeDataManager()
-		:RTData(FRealTimeData())
-	{
 
+	//UFUNCTION(BlueprintCallable)
+	//const FRealTimeData& GetRTData() const
+	//{
+	//	return RTData;
+	//}
+	//
+	//UFUNCTION(BlueprintCallable)
+	//void SetRTData(const FRealTimeData& _RTData)
+	//{
+	//	RTData = _RTData;
+	//}
+	UFUNCTION(BlueprintCallable)
+	const FVector& GetPos() const
+	{
+		return Pos;
 	}
 
-	const FRealTimeData& GetRTData() const
-	{
-		return RTData;
-	}
-	
-	void SetRTData(const FRealTimeData& _RTData)
-	{
-		RTData = _RTData;
-	}
+	UFUNCTION(BlueprintCallable)
+	void SetPos(const FVector& _Pos);
+
 
 protected:
 	void BeginPlay() override;
 
 private:
-	UPROPERTY()
-	FRealTimeData RTData = FRealTimeData();
+	//UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
+	//FRealTimeData RTData = FRealTimeData();
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	FVector Pos = FVector();
 };
