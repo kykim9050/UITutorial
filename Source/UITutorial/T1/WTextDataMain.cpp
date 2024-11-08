@@ -57,6 +57,10 @@ void STextDataMain::Construct(const FArguments& InArgs)
 				[
 					SAssignNew(NewWidget, STextDataWidget)
 					.Info(&(TextDatas->Infos[Count]))
+					.VarInfo_Lambda([]()->FText
+						{
+							return FText::FromString(FDateTime::Now().ToString(TEXT("%Y-%m-%d %H:%M:%S")));
+						})
 				];
 				++Count;
 			}
