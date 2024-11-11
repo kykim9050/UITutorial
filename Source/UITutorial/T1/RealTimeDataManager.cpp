@@ -10,5 +10,5 @@ void ARealTimeDataManager::BeginPlay()
 
 void ARealTimeDataManager::SetPos(const FVector& _Pos)
 {
-	Pos = _Pos;
+	RTData.Pos = _Pos;
 }
