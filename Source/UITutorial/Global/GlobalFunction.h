@@ -23,7 +23,19 @@ public:
 	/// <returns></returns>
 	static UMainGameInstance* GetMainGameInstance(const UWorld* WorldContextObject);
 
-	ARealTimeDataManager* GetRTDataManager();
+	template<typename EnumType>
+	static void PushActor(EnumType _GroupIndex, AActor* _Actor)
+	{
+		if (nullptr == _Actor)
+		{
+			return;
+		}
+
+		PushActor(static_cast<uint8>(_GroupIndex), _Actor);
+	}
+
+	UFUNCTION(BlueprintCallable, Category = "Game", meta = (UnsafeDuringActorConstruction = "true"))
+	static void PushActor(uint8 _GroupIndex, AActor* _Actor);
 
 protected:
 

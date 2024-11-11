@@ -5,6 +5,7 @@
 
 #include "Global/MainGameInstance.h"
 #include "T1/RealTimeDataManager.h"
+#include "T1/T1GameState.h"
 
 UMainGameInstance* UGlobalFunction::GetMainGameInstance(const UWorld* WorldContextObject)
 {
@@ -19,8 +20,21 @@ UMainGameInstance* UGlobalFunction::GetMainGameInstance(const UWorld* WorldConte
 	return MainGameInst;
 }
 
-ARealTimeDataManager* UGlobalFunction::GetRTDataManager()
+void UGlobalFunction::PushActor(uint8 _GroupIndex, AActor* _Actor)
 {
-	return nullptr;
+	if (nullptr == _Actor->GetWorld())
+	{
+		return;
+	}
+
+	const UWorld* World = Cast<UWorld>(_Actor->GetWorld());
+
+	AT1GameState* GameState = World->GetGameState<AT1GameState>();
+	if (nullptr == GameState)
+	{
+		UE_LOG(LogTemp, Fatal, TEXT("%S(%u)> if (nullptr == GameState)"), __FUNCTION__, __LINE__);
+	}
+
+	GameState->PushActor(_GroupIndex, _Actor);
 }
 
