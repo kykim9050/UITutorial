@@ -2,11 +2,14 @@
 
 
 #include "T1/RealTimeDataManager.h"
+#include "Global/GlobalFunction.h"
 
 void ARealTimeDataManager::BeginPlay()
 {
 	Super::BeginPlay();
+	UGlobalFunction::PushActor(EObjectType::InfoManager, this);
 }
+
 
 void ARealTimeDataManager::SetPos(const FVector& _Pos)
 {

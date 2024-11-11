@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "Global/ContentsEnum.h"
 #include "GlobalFunction.generated.h"
 
 /**
