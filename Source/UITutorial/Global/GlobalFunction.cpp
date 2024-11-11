@@ -4,6 +4,7 @@
 #include "Global/GlobalFunction.h"
 
 #include "Global/MainGameInstance.h"
+#include "T1/RealTimeDataManager.h"
 
 UMainGameInstance* UGlobalFunction::GetMainGameInstance(const UWorld* WorldContextObject)
 {
@@ -17,3 +18,9 @@ UMainGameInstance* UGlobalFunction::GetMainGameInstance(const UWorld* WorldConte
 
 	return MainGameInst;
 }
+
+ARealTimeDataManager* UGlobalFunction::GetRTDataManager()
+{
+	return nullptr;
+}
+

@@ -7,6 +7,7 @@
 #include "Global/MainGameInstance.h"
 #include "DataTable/T1TextDataRow.h"
 
+
 void STextDataMain::Construct(const FArguments& InArgs)
 {
 	World = InArgs._World;

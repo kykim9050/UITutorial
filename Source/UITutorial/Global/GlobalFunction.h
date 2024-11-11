@@ -9,6 +9,7 @@
 /**
  * 
  */
+class ARealTimeDataManager;
 class UMainGameInstance;
 UCLASS()
 class UITUTORIAL_API UGlobalFunction : public UBlueprintFunctionLibrary
@@ -22,8 +23,9 @@ public:
 	/// <returns></returns>
 	static UMainGameInstance* GetMainGameInstance(const UWorld* WorldContextObject);
 
+	ARealTimeDataManager* GetRTDataManager();
+
 protected:
 
 private:
-
 };

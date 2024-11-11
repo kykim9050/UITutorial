@@ -22,9 +22,20 @@ public:
 	/// <returns></returns>
 	FT1TextDataRow* GetT1TextDataRow(FName _Name);
 
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="_Name"></param>
+	/// <returns></returns>
+	const TSubclassOf<UObject> GetGlobalObjectClass(FName _Name);
+
 protected:
 
 private:
-	UPROPERTY(EditAnywhere, /*BlueprintReadWrite, */meta = (AllowprivateAccess = "true"))
+	UPROPERTY(EditAnywhere, meta = (AllowprivateAccess = "true"))
 	UDataTable* T1TextDataRow = nullptr;
+
+
+	UPROPERTY(EditAnywhere, meta = (AllowprivateAccess = "true"))
+	UDataTable* GlobalObjectDataRow = nullptr;
 };
