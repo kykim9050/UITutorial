@@ -20,6 +20,24 @@ UMainGameInstance* UGlobalFunction::GetMainGameInstance(const UWorld* WorldConte
 	return MainGameInst;
 }
 
+AT1GameState* UGlobalFunction::GetGameState(const UWorld* WorldContextObject)
+{
+	if (nullptr == WorldContextObject)
+	{
+		return nullptr;
+	}
+
+	const UWorld* World = Cast<UWorld>(WorldContextObject);
+	AT1GameState* CurGameState = World->GetGameState<AT1GameState>();
+
+	if (nullptr == CurGameState)
+	{
+		return nullptr;
+	}
+
+	return CurGameState;
+}
+
 void UGlobalFunction::PushActor(uint8 _GroupIndex, AActor* _Actor)
 {
 	if (nullptr == _Actor->GetWorld())

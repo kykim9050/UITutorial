@@ -4,11 +4,19 @@
 #include "T1/RealTimeDataManager.h"
 #include "Global/GlobalFunction.h"
 
+ARealTimeDataManager::ARealTimeDataManager()
+{
+	if (nullptr != UGlobalFunction::GetGameState(GetWorld()))
+	{
+		UGlobalFunction::PushActor(EObjectType::InfoManager, this);
+	}
+}
+
 void ARealTimeDataManager::BeginPlay()
 {
 	Super::BeginPlay();
-	UGlobalFunction::PushActor(EObjectType::InfoManager, this);
 }
+
 
 
 void ARealTimeDataManager::SetPos(const FVector& _Pos)

@@ -29,6 +29,8 @@ public:
 protected:
 	void BeginPlay() override;
 
+	ARealTimeDataManager();
+
 private:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, meta = (AllowPrivateAccess = "true"))
 	FRealTimeData RTData = FRealTimeData();
