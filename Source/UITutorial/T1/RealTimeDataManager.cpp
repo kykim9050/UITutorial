@@ -3,10 +3,11 @@
 
 #include "T1/RealTimeDataManager.h"
 #include "Global/GlobalFunction.h"
+#include "T1/T1GameState.h"
 
 ARealTimeDataManager::ARealTimeDataManager()
 {
-	if (nullptr != UGlobalFunction::GetGameState(GetWorld()))
+	if (nullptr != UGlobalFunction::GetCurGameState<AT1GameState>(GetWorld()))
 	{
 		UGlobalFunction::PushActor(EObjectType::InfoManager, this);
 	}

@@ -25,7 +25,30 @@ public:
 	/// <returns></returns>
 	static UMainGameInstance* GetMainGameInstance(const UWorld* WorldContextObject);
 
-	static AT1GameState* GetGameState(const UWorld* WorldContextObject);
+	/// <summary>
+	/// 현재 World에 속하는 GameState를 가져오는 함수
+	/// </summary>
+	/// <typeparam name="GameStateType"></typeparam>
+	/// <param name="WorldContextObject"></param>
+	/// <returns></returns>
+	template<typename GameStateType>
+	static GameStateType* GetCurGameState(const UWorld* WorldContextObject)
+	{
+		if (nullptr == WorldContextObject)
+		{
+			return nullptr;
+		}
+
+		const UWorld* World = Cast<UWorld>(WorldContextObject);
+		GameStateType* CurGameState = World->GetGameState<GameStateType>();
+
+		if (nullptr == CurGameState)
+		{
+			return nullptr;
+		}
+
+		return CurGameState;
+	}
 
 	/// <summary>
 	/// GameState에 Actor를 보관할 수 있는 매소드 (템플릿)
