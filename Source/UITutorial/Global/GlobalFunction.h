@@ -56,7 +56,7 @@ public:
 	/// <typeparam name="EnumType"></typeparam>
 	/// <param name="_GroupIndex"></param>
 	/// <param name="_Actor"></param>
-	template<typename EnumType>
+	template<typename GameStateType, typename EnumType>
 	static void PushActor(EnumType _GroupIndex, AActor* _Actor)
 	{
 		if (nullptr == _Actor)
@@ -64,7 +64,7 @@ public:
 			return;
 		}
 
-		PushActor(static_cast<uint8>(_GroupIndex), _Actor);
+		PushActor<GameStateType>(static_cast<uint8>(_GroupIndex), _Actor);
 	}
 
 	/// <summary>
@@ -72,8 +72,23 @@ public:
 	/// </summary>
 	/// <param name="_GroupIndex"></param>
 	/// <param name="_Actor"></param>
+	template<typename GameStateType>
 	UFUNCTION(BlueprintCallable, Category = "Game", meta = (UnsafeDuringActorConstruction = "true"))
-	static void PushActor(uint8 _GroupIndex, AActor* _Actor);
+	static void PushActor(uint8 _GroupIndex, AActor* _Actor)
+	{
+		if (nullptr == _Actor->GetWorld())
+		{
+			return;
+		}
+
+		AT1GameState* GameState = GetCurGameState<GameStateType>(_Actor->GetWorld());
+		if (nullptr == GameState)
+		{
+			UE_LOG(LogTemp, Fatal, TEXT("%S(%u)> if (nullptr == GameState)"), __FUNCTION__, __LINE__);
+		}
+
+		GameState->PushActor(_GroupIndex, _Actor);
+	}
 
 protected:
 

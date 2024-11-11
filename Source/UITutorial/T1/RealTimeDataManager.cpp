@@ -9,7 +9,7 @@ ARealTimeDataManager::ARealTimeDataManager()
 {
 	if (nullptr != UGlobalFunction::GetCurGameState<AT1GameState>(GetWorld()))
 	{
-		UGlobalFunction::PushActor(EObjectType::InfoManager, this);
+		UGlobalFunction::PushActor<AT1GameState>(EObjectType::InfoManager, this);
 	}
 }
 
