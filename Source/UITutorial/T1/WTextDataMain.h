@@ -25,6 +25,8 @@ protected:
 
 private:
 	TArray<TSharedPtr<STextDataWidget>> TextDataWidgets = TArray<TSharedPtr<STextDataWidget>>();
+
+	FText GetPawnLocationText() const;
 };
 
 /**

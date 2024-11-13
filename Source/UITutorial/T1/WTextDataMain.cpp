@@ -60,7 +60,10 @@ void STextDataMain::Construct(const FArguments& InArgs)
 				[
 					SAssignNew(NewWidget, STextDataWidget)
 					.Info(&(TextDatas->Infos[Count]))
-					.VarInfo(PosInfo)
+					.VarInfo_Lambda([this]() -> FText
+						{
+							return GetPawnLocationText();
+						})
 				];
 				++Count;
 			}
@@ -98,12 +101,29 @@ TSharedRef<SWidget> UWTextDataMain::RebuildWidget()
 		UE_LOG(LogTemp, Fatal, TEXT("%S(%u)> if (nullptr == CurWorld)"), __FUNCTION__, __LINE__);
 	}
 
-	PosData = MakeAttributeLambda([]()->FText
-		{
-			return FText::FromString(FDateTime::Now().ToString(TEXT("%Y-%m-%d %H:%M:%S")));
-			//return UGameplayStatics::GetPlayerController(CurWorld, 0)->GetPawn()->GetActorLocation();
-		});
+	//PosData = MakeAttributeLambda([]()->FText
+	//	{
+	//		return FText::FromString(FDateTime::Now().ToString(TEXT("%Y-%m-%d %H:%M:%S")));
+	//		//return UGameplayStatics::GetPlayerController(CurWorld, 0)->GetPawn()->GetActorLocation();
+	//	});
 
 	TextDataMainWidget = SNew(STextDataMain).World(CurWorld).PosInfo(PosData);
 	return TextDataMainWidget.ToSharedRef();
+}
+
+FText STextDataMain::GetPawnLocationText() const
+{
+	const UWorld* CurWorld = Cast<const UWorld>(World);
+
+	if (APlayerController* PlayerController = GEngine->GetFirstLocalPlayerController(CurWorld))
+	{
+		if (APawn* Pawn = PlayerController->GetPawn())
+		{
+			FVector Location = Pawn->GetActorLocation();
+
+			return FText::FromString(FString::Printf(TEXT("Location: X=%.2f, Y=%.2f, Z=%.2f"), Location.X, Location.Y, Location.Z));
+		}
+	}
+
+	return FText::FromString(TEXT("No Pawn Found"));
 }
