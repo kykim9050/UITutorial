@@ -6,11 +6,13 @@
 #include "Global/GlobalFunction.h"
 #include "Global/MainGameInstance.h"
 #include "DataTable/T1TextDataRow.h"
+#include "Kismet/GameplayStatics.h"
 
 
 void STextDataMain::Construct(const FArguments& InArgs)
 {
 	World = InArgs._World;
+	PosInfo = InArgs._PosInfo;
 	
 	if (false == World.IsValid())
 	{
@@ -58,10 +60,11 @@ void STextDataMain::Construct(const FArguments& InArgs)
 				[
 					SAssignNew(NewWidget, STextDataWidget)
 					.Info(&(TextDatas->Infos[Count]))
-					.VarInfo_Lambda([]()->FText
-						{
-							return FText::FromString(FDateTime::Now().ToString(TEXT("%Y-%m-%d %H:%M:%S")));
-						})
+					.VarInfo(PosInfo)
+					//.VarInfo_Lambda([]()->FText
+					//	{
+					//		return FText::FromString(FDateTime::Now().ToString(TEXT("%Y-%m-%d %H:%M:%S")));
+					//	})
 				];
 				++Count;
 			}
@@ -99,6 +102,11 @@ TSharedRef<SWidget> UWTextDataMain::RebuildWidget()
 		UE_LOG(LogTemp, Fatal, TEXT("%S(%u)> if (nullptr == CurWorld)"), __FUNCTION__, __LINE__);
 	}
 
-	TextDataMainWidget = SNew(STextDataMain).World(CurWorld);
+	PosData = MakeAttributeLambda([&CurWorld]()->FVector
+		{
+			return UGameplayStatics::GetPlayerController(CurWorld, 0)->GetPawn()->GetActorLocation();
+		});
+
+	TextDataMainWidget = SNew(STextDataMain).World(CurWorld).PosInfo(PosData);
 	return TextDataMainWidget.ToSharedRef();
 }

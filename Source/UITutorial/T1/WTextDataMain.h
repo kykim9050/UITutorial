@@ -13,11 +13,13 @@ class STextDataMain : public SCompoundWidget
 public:
 	SLATE_BEGIN_ARGS(STextDataMain) {}
 	SLATE_ARGUMENT(TWeakObjectPtr<UWorld>, World)
+	SLATE_ATTRIBUTE(FVector, PosInfo)
 	SLATE_END_ARGS()
 
 	void Construct(const FArguments& InArgs);
 
 	TWeakObjectPtr<UWorld> World = nullptr;
+	TAttribute<FVector> PosInfo = TAttribute<FVector>();
 
 protected:
 
@@ -41,4 +43,5 @@ protected:
 
 private:
 	TSharedPtr<STextDataMain> TextDataMainWidget = nullptr;
+	TAttribute<FVector> PosData = TAttribute<FVector>();
 };

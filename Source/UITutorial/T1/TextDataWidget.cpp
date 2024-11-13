@@ -25,7 +25,7 @@ void STextDataWidget::Construct(const FArguments& InArgs)
 		+SVerticalBox::Slot()
 		[
 			SNew(STextBlock)
-			.Text(VarInfo.IsSet() ? VarInfo : FText::FromString(FString("Insert Value")))
+			.Text(VarInfo.IsSet() ? FText::FromString(VarInfo.Get().ToString()) : FText::FromString(FString("Insert Value")))
 		]
 	];
 }
