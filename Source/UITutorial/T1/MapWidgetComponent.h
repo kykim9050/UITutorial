@@ -7,13 +7,34 @@
 #include "MapWidgetComponent.generated.h"
 
 
+UCLASS(BlueprintType)
+class AMap : public AActor
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "MapWidget")
+	FSlateBrush MapImg;
+};
+
 USTRUCT(BlueprintType)
 struct FMapWidgetData
 {
 	GENERATED_BODY()
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "MapWidget")
-	FSlateBrush MapImg;
+	TSubclassOf<AMap> MapClass;
+
+	FMapWidgetData()
+		:MapClass(nullptr)
+	{
+
+	}
+
+	FMapWidgetData(TSubclassOf<AMap> _MapClass)
+		:MapClass(_MapClass)
+	{
+
+	}
 };
 
 
@@ -30,9 +51,9 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 		
-	FMapWidgetData* GetMapDataPtr()
+	FMapWidgetData& GetMapData()
 	{
-		return &MapData;
+		return MapData;
 	}
 
 protected:

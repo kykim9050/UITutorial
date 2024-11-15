@@ -28,7 +28,7 @@ void STextDataMain::Construct(const FArguments& InArgs)
 		+SHorizontalBox::Slot()
 		[
 			SAssignNew(Map, SMapWidget)
-			.MapImg(MapWidget.IsValid() ? &MapWidget->GetMapDataPtr()->MapImg : nullptr)
+			.MapData(MapWidget.IsValid() ? &MapWidget->GetMapData() : nullptr)
 		]
 		+SHorizontalBox::Slot()
 		[

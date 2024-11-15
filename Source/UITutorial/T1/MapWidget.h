@@ -4,19 +4,20 @@
 
 #include "CoreMinimal.h"
 
+struct FMapWidgetData;
 class UITUTORIAL_API SMapWidget : public SCompoundWidget
 {
 public:
 	SLATE_BEGIN_ARGS(SMapWidget) {}
-	SLATE_ARGUMENT(const FSlateBrush*, MapImg)
+	SLATE_ARGUMENT(FMapWidgetData*, MapData)
 	SLATE_END_ARGS()
 
 	void Construct(const FArguments& InArgs);
 
+	const FSlateBrush* GetMapImage() const;
 protected:
 
 private:
-	const FSlateBrush* MapImg;
+	FMapWidgetData* MapData;
 
-	const FSlateBrush* GetMapImage();
 };

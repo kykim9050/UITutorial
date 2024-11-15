@@ -2,26 +2,24 @@
 
 
 #include "T1/MapWidget.h"
+#include "T1/MapWidgetComponent.h"
 
 void SMapWidget::Construct(const FArguments& InArgs)
 {
-	MapImg = InArgs._MapImg;
+	MapData = InArgs._MapData;
 
 	ChildSlot
 	[
 		SNew(SImage)
-		.Image_Lambda([this]()-> const FSlateBrush*
-			{
-				return GetMapImage();
-			})
+		.Image(this, &SMapWidget::GetMapImage)
 	];
 }
 
-const FSlateBrush* SMapWidget::GetMapImage()
+const FSlateBrush* SMapWidget::GetMapImage() const
 {
-	if (MapImg)
+	if (MapData && MapData->MapClass)
 	{
-		return MapImg;
+		return &MapData->MapClass.GetDefaultObject()->MapImg;
 	}
 
 	return FCoreStyle::Get().GetBrush("WhiteBrush");
