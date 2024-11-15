@@ -8,6 +8,7 @@ class UITUTORIAL_API SMapWidget : public SCompoundWidget
 {
 public:
 	SLATE_BEGIN_ARGS(SMapWidget) {}
+	SLATE_ATTRIBUTE(TWeakObjectPtr<const FSlateBrush>, MapImg)
 	SLATE_END_ARGS()
 
 	void Construct(const FArguments& InArgs);
@@ -15,5 +16,7 @@ public:
 protected:
 
 private:
-	
+	TAttribute<TWeakObjectPtr<const FSlateBrush>> MapImg;
+
+	const FSlateBrush* GetMapImage();
 };
