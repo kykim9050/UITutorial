@@ -7,6 +7,16 @@
 #include "MapWidgetComponent.generated.h"
 
 
+USTRUCT(BlueprintType)
+struct FMapWidgetData
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "MapWidget")
+	FSlateBrush MapImg;
+};
+
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class UITUTORIAL_API UMapWidgetComponent : public UActorComponent
 {
@@ -16,13 +26,15 @@ public:
 	// Sets default values for this component's properties
 	UMapWidgetComponent();
 
+public:	
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+		
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-		
+private:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "MapWidget", meta = (AllowPrivateAccess = "true"))
+	FMapWidgetData MapData;
 };
