@@ -7,6 +7,7 @@
 #include "Global/MainGameInstance.h"
 #include "DataTable/T1TextDataRow.h"
 #include "Kismet/GameplayStatics.h"
+#include "T1/MapWidget.h"
 
 
 void STextDataMain::Construct(const FArguments& InArgs)
@@ -15,12 +16,21 @@ void STextDataMain::Construct(const FArguments& InArgs)
 	PosInfo = InArgs._PosInfo;
 
 	TSharedPtr<SGridPanel> GridPanel = nullptr;;
+	TSharedPtr<SMapWidget> Map = nullptr;
 
 	ChildSlot
 	.HAlign(HAlign_Fill)
 	.VAlign(VAlign_Fill)
 	[
-		SAssignNew(GridPanel, SGridPanel)
+		SNew(SHorizontalBox)
+		+SHorizontalBox::Slot()
+		[
+			SAssignNew(Map, SMapWidget)
+		]
+		+SHorizontalBox::Slot()
+		[
+			SAssignNew(GridPanel, SGridPanel)
+		]
 	];
 
 	for (int X = 0; X < 3; ++X)
