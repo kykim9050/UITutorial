@@ -19,9 +19,9 @@ void SMapWidget::Construct(const FArguments& InArgs)
 
 const FSlateBrush* SMapWidget::GetMapImage()
 {
-	if (MapImg.IsSet() && MapImg.Get().IsValid())
+	if (MapImg)
 	{
-		return MapImg.Get().Get();
+		return MapImg;
 	}
 
 	return FCoreStyle::Get().GetBrush("WhiteBrush");

@@ -8,12 +8,14 @@
 #include "DataTable/T1TextDataRow.h"
 #include "Kismet/GameplayStatics.h"
 #include "T1/MapWidget.h"
+#include "T1/MapWidgetComponent.h"
 
 
 void STextDataMain::Construct(const FArguments& InArgs)
 {
 	World = InArgs._World;
 	PosInfo = InArgs._PosInfo;
+	MapWidget = InArgs._MapWidget;
 
 	TSharedPtr<SGridPanel> GridPanel = nullptr;;
 	TSharedPtr<SMapWidget> Map = nullptr;
@@ -26,6 +28,7 @@ void STextDataMain::Construct(const FArguments& InArgs)
 		+SHorizontalBox::Slot()
 		[
 			SAssignNew(Map, SMapWidget)
+			.MapImg(MapWidget.IsValid() ? &MapWidget->GetMapDataPtr()->MapImg : nullptr)
 		]
 		+SHorizontalBox::Slot()
 		[
@@ -69,7 +72,19 @@ TSharedRef<SWidget> UWTextDataMain::RebuildWidget()
 {
 	TWeakObjectPtr<UWorld> CurWorld = GetWorld();
 
-	TextDataMainWidget = SNew(STextDataMain).World(CurWorld).PosInfo(PosData);
+	APlayerController* Controller = GetOwningPlayer();
+
+	if (nullptr != Controller)
+	{
+		APawn* Pawn = Controller->GetPawn();
+
+		if (nullptr != Pawn)
+		{
+			MapWidgetComponent = Pawn->FindComponentByClass<UMapWidgetComponent>();
+		}
+	}
+
+	TextDataMainWidget = SNew(STextDataMain).World(CurWorld).PosInfo(PosData).MapWidget(MapWidgetComponent);
 	return TextDataMainWidget.ToSharedRef();
 }
 

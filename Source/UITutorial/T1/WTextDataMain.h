@@ -7,19 +7,21 @@
 #include "WTextDataMain.generated.h"
 
 class STextDataWidget;
-
+class UMapWidgetComponent;
 class STextDataMain : public SCompoundWidget
 {
 public:
 	SLATE_BEGIN_ARGS(STextDataMain) {}
 	SLATE_ARGUMENT(TWeakObjectPtr<UWorld>, World)
 	SLATE_ATTRIBUTE(FText, PosInfo)
+	SLATE_ARGUMENT(TWeakObjectPtr<UMapWidgetComponent> ,MapWidget)
 	SLATE_END_ARGS()
 
 	void Construct(const FArguments& InArgs);
 
 	TWeakObjectPtr<UWorld> World = nullptr;
 	TAttribute<FText> PosInfo = TAttribute<FText>();
+	TWeakObjectPtr<UMapWidgetComponent> MapWidget = TWeakObjectPtr<UMapWidgetComponent>();
 
 protected:
 
@@ -44,6 +46,7 @@ protected:
 	TSharedRef<SWidget> RebuildWidget() override;
 
 private:
+	UMapWidgetComponent* MapWidgetComponent = nullptr;
 	TSharedPtr<STextDataMain> TextDataMainWidget = nullptr;
 	TAttribute<FText> PosData = TAttribute<FText>();
 };
