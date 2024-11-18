@@ -11,21 +11,34 @@ void STextDataWidget::Construct(const FArguments& InArgs)
 
 	ChildSlot
 	[
-		SNew(SVerticalBox)
-		+SVerticalBox::Slot()
+		SNew(SOverlay)
+		+SOverlay::Slot()
 		[
-			SNew(STextBlock)
-			.Text(FText::FromString(nullptr != Info ? Info->DataTitle : "None"))
+			SNew(SBorder)
+			.BorderImage_Lambda([this]()->const FSlateBrush*
+			{
+				return new FSlateRoundedBoxBrush(FAppStyle::Get().GetSlateColor("Colors.Hover"), 6.f, FAppStyle::Get().GetSlateColor("Colors.Hover2"), 1.0f);
+			})
 		]
-		+SVerticalBox::Slot()
+		+SOverlay::Slot()
+		.Padding(2.5f)
 		[
-			SNew(STextBlock)
-			.Text(FText::FromString(nullptr != Info ? Info->DataUnit : "None"))
-		]
-		+SVerticalBox::Slot()
-		[
-			SNew(STextBlock)
-			.Text(VarInfo.IsSet() ? VarInfo : FText::FromString(FString("Insert Value")))
+			SNew(SVerticalBox)
+			+SVerticalBox::Slot()
+			[
+				SNew(STextBlock)
+				.Text(FText::FromString(nullptr != Info ? Info->DataTitle : "None"))
+			]
+			+SVerticalBox::Slot()
+			[
+				SNew(STextBlock)
+				.Text(FText::FromString(nullptr != Info ? Info->DataUnit : "None"))
+			]
+			+SVerticalBox::Slot()
+			[
+				SNew(STextBlock)
+				.Text(VarInfo.IsSet() ? VarInfo : FText::FromString(FString("Insert Value")))
+			]
 		]
 	];
 }
