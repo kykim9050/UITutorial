@@ -24,15 +24,29 @@ void STextDataMain::Construct(const FArguments& InArgs)
 	.HAlign(HAlign_Fill)
 	.VAlign(VAlign_Fill)
 	[
-		SNew(SHorizontalBox)
-		+SHorizontalBox::Slot()
+		SNew(SOverlay)
+		+SOverlay::Slot()
 		[
-			SAssignNew(Map, SMapWidget)
-			.MapData(MapWidget.IsValid() ? &MapWidget->GetMapData() : nullptr)
+			SNew(SBorder)
+			.BorderImage_Lambda([this]()->const FSlateBrush*
+				{
+					return new FSlateRoundedBoxBrush(FAppStyle::Get().GetSlateColor("Colors.Dropdown"), 6.f, FAppStyle::Get().GetSlateColor("Colors.Foldout"), 1.0f);
+				})
+			.Padding(0.0f)
+			
 		]
-		+SHorizontalBox::Slot()
+		+SOverlay::Slot()
 		[
-			SAssignNew(GridPanel, SGridPanel)
+			SNew(SHorizontalBox)
+			+SHorizontalBox::Slot()
+			[
+				SAssignNew(Map, SMapWidget)
+				.MapData(MapWidget.IsValid() ? &MapWidget->GetMapData() : nullptr)
+			]
+			+SHorizontalBox::Slot()
+			[
+				SAssignNew(GridPanel, SGridPanel)
+			]
 		]
 	];
 
