@@ -15,7 +15,7 @@ void SMapWidget::Construct(const FArguments& InArgs)
 			{
 				return new FSlateRoundedBoxBrush(FAppStyle::Get().GetSlateColor("Colors.Hover"), 6.f, FAppStyle::Get().GetSlateColor("Colors.Hover2"), 1.0f);
 			})
-		.Padding(5.f)
+		.Padding(3.f)
 		[
 			SNew(SBorder)
 			.BorderImage_Lambda([this]()->const FSlateBrush*

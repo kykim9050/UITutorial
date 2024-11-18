@@ -39,11 +39,13 @@ void STextDataMain::Construct(const FArguments& InArgs)
 		[
 			SNew(SHorizontalBox)
 			+SHorizontalBox::Slot()
+			.Padding(5.f)
 			[
 				SAssignNew(Map, SMapWidget)
 				.MapData(MapWidget.IsValid() ? &MapWidget->GetMapData() : nullptr)
 			]
 			+SHorizontalBox::Slot()
+			.Padding(5.f)
 			[
 				SAssignNew(GridPanel, SGridPanel)
 			]
@@ -57,11 +59,11 @@ void STextDataMain::Construct(const FArguments& InArgs)
 			TSharedPtr<STextDataWidget> NewWidget = nullptr;
 
 			GridPanel->AddSlot(Y, X)
-				.Padding(10.f)
+				.Padding(5.f)
 				[
 					SAssignNew(NewWidget, STextDataWidget)
-						.Info(nullptr)
-						.VarInfo_Lambda([this]() -> FText
+					.Info(nullptr)
+					.VarInfo_Lambda([this]() -> FText
 						{
 							return GetPawnLocationText();
 						})

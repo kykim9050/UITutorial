@@ -21,7 +21,7 @@ void STextDataWidget::Construct(const FArguments& InArgs)
 			})
 		]
 		+SOverlay::Slot()
-		.Padding(2.5f)
+		.Padding(3.5f)
 		[
 			SNew(SVerticalBox)
 			+SVerticalBox::Slot()
