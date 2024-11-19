@@ -30,6 +30,17 @@ void STextDataWidget::Construct(const FArguments& InArgs)
 				.Text(FText::FromString(nullptr != Info ? Info->DataTitle : "None"))
 			]
 			+SVerticalBox::Slot()
+			.VAlign(VAlign_Center)
+			.FillHeight(0.35f)
+			.Padding(.0f, 1.f)
+			[
+				SNew(SSeparator)
+				.Orientation(Orient_Horizontal)
+				.Thickness(3.f)
+				//.ColorAndOpacity(FConcertServerStyle::Get().GetColor("Concert.Clients.NetworkGraph.GraphSeparatorLine.LineColor"))
+				//.SeparatorImage(&ToolBarStyle.SeparatorBrush)
+			]
+			+SVerticalBox::Slot()
 			[
 				SNew(STextBlock)
 				.Text(FText::FromString(nullptr != Info ? Info->DataUnit : "None"))
