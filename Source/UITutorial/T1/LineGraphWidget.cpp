@@ -42,9 +42,9 @@ int32 ULineGraphWidget::NativePaint(
                 AllottedGeometry.ToPaintGeometry(),
                 { StartPoint, EndPoint },
                 ESlateDrawEffect::None,
-                FLinearColor::Red, // Line Color
+                FLinearColor::Blue, // Line Color
                 true,              // Anti-aliasing
-                2.0f               // Line Thickness
+                3.0f               // Line Thickness
             );
         }
     }
