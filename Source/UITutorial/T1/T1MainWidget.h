@@ -11,6 +11,7 @@
  */
 class UWTextDataMain;
 class UCanvasPanel;
+class ULineGraphWidget;
 UCLASS(Blueprintable, BlueprintType)
 class UITUTORIAL_API UT1MainWidget : public UUserWidget
 {
@@ -26,4 +27,7 @@ private:
 
 	UPROPERTY(BlueprintReadOnly, Category = "T1Widget", meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
 	UWTextDataMain* TextDataMain = nullptr;
+
+	UPROPERTY(BlueprintReadOnly, Category = "T1Widget", meta = (BindWidget), meta = (AllowPrivateAccess = "true"))
+	ULineGraphWidget* LineGraphWidget = nullptr;
 };
