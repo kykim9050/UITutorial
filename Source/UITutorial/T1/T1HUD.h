@@ -21,7 +21,7 @@ protected:
 	void BeginPlay() override;
 
 private:
-	UT1MainWidget* MainWidget = nullptr;
+	UUserWidget* MainWidget = nullptr;
 
 	UPROPERTY(Editanywhere, Category = "Widgets", meta = (AllowPrivateAccess = "true"))
 	TSubclassOf<UUserWidget> MainWidgetClass = nullptr;

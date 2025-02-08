@@ -9,7 +9,7 @@ void AT1HUD::BeginPlay()
 {
 	Super::BeginPlay();
 
-	MainWidget = CreateWidget<UT1MainWidget>(GetWorld(), MainWidgetClass);
+	MainWidget = CreateWidget<UUserWidget>(GetWorld(), MainWidgetClass);
 
 	if (nullptr != MainWidget)
 	{
